@@ -1,0 +1,58 @@
+﻿@model IEnumerable<WebStore.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Danh sách sản phẩm của APPLE</h2>
+
+<p>
+    @Html.ActionLink("Thêm mới", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Tên sản phẩm
+        </th>
+        <th>
+            Thương hiệu
+        </th>
+        <th>
+            Loại sản phẩm
+        </th>
+        <th>
+            Giá sản phẩm
+        </th>
+        <th>
+            Số lượng có sẵn
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ten_Product)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Brand.Ten_Brand)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type.Ten_Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gia_Product)USD
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Available)
+        </td>
+        <td>
+            @Html.ActionLink("Xem chi tiết", "Details", new { id = item.Ma_Product }) |
+            @Html.ActionLink("Sửa", "Edit", new { id=item.Ma_Product }) |
+            @Html.ActionLink("Xoá", "Delete", new { id=item.Ma_Product })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,56 @@
+﻿@model WebStore.Models.Admin
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Xóa</h2>
+
+<h3>Bạn có chắc chắn muốn xóa người quản trị này không?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Mã:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ma_Ad)
+        </dd>
+
+        <dt>
+            Tên Người quản trị:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name_Ad)
+        </dd>
+
+        <dt>
+            Mail:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mail)
+        </dd>
+
+        <dt>
+            Password:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xác nhận xóa" class="btn btn-danger" /> |
+            @Html.ActionLink("Quay lại danh sách", "Index")
+        </div>
+    }
+</div>

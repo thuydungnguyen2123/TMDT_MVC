@@ -1,0 +1,75 @@
+﻿@model IEnumerable<WebStore.Models.Transaction>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Danh sách giao dịch</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            Mã giao dịch
+        </th>
+        <th>
+            Mã đơn hàng
+        </th>
+        <th>
+            Trạng thái
+        </th>
+        <th>
+            Tổng tiền
+        </th>
+        <th>
+            Ghi chú giao dịch
+        </th>
+        <th>
+            Hình thức thanh toán
+        </th>
+        <th>
+            Thông tin thanh toán
+        </th>
+        <th>
+            Ngày tạo
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ma_Tran)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Order.Ma_Order)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Total)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Note)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Payment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Payment_Info)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Created)
+        </td>
+        <td>
+            @Html.ActionLink("Sửa", "Edit", new { id=item.Ma_Tran }) |
+            @Html.ActionLink("Xoá", "Delete", new { id=item.Ma_Tran })
+        </td>
+    </tr>
+}
+
+</table>

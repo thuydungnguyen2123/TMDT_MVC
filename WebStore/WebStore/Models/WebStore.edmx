@@ -1,0 +1,582 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WebStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admins">
+          <Key>
+            <PropertyRef Name="Ma_Ad" />
+          </Key>
+          <Property Name="Ma_Ad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_Ad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Mail" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Brands">
+          <Key>
+            <PropertyRef Name="Ma_Brand" />
+          </Key>
+          <Property Name="Ma_Brand" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ten_Brand" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Ten_Alias" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DetailOrders">
+          <Key>
+            <PropertyRef Name="Ma_DeOr" />
+          </Key>
+          <Property Name="Ma_DeOr" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ma_Order" Type="int" Nullable="false" />
+          <Property Name="Ma_Product" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="int" Nullable="false" />
+          <Property Name="Price" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="Ma_FB" />
+          </Key>
+          <Property Name="Ma_FB" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ten" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SDT" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Mail" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Created" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Members">
+          <Key>
+            <PropertyRef Name="Ma_Mem" />
+          </Key>
+          <Property Name="Ma_Mem" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ten_Mem" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Mail" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="Ma_Order" />
+          </Key>
+          <Property Name="Ma_Order" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ma_Mem" Type="int" />
+          <Property Name="Total" Type="float" />
+          <Property Name="Shipping" Type="varchar" MaxLength="50" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="Note" Type="nvarchar" MaxLength="100" />
+          <Property Name="Ten_NguoiNhan" Type="nvarchar" MaxLength="50" />
+          <Property Name="DiaChi_NguoiNhan" Type="nvarchar" MaxLength="50" />
+          <Property Name="SDT__NguoiNhan" Type="varchar" MaxLength="20" />
+          <Property Name="Mail_NguoiNhan" Type="nvarchar" MaxLength="20" />
+          <Property Name="TP_NguoiNhan" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="Ma_Product" />
+          </Key>
+          <Property Name="Ma_Product" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ma_Brand" Type="int" Nullable="false" />
+          <Property Name="Ma_Type" Type="int" Nullable="false" />
+          <Property Name="Ten_Product" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Ten_Alias" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Gia_Product" Type="int" Nullable="false" />
+          <Property Name="Info_Product" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Available" Type="int" Nullable="false" />
+          <Property Name="Image_Product" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Detail_Product" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Describe_Product" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Transactions">
+          <Key>
+            <PropertyRef Name="Ma_Tran" />
+          </Key>
+          <Property Name="Ma_Tran" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ma_Order" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="Total" Type="float" Nullable="false" />
+          <Property Name="Note" Type="nvarchar" MaxLength="100" />
+          <Property Name="Payment" Type="nvarchar" MaxLength="100" />
+          <Property Name="Payment_Info" Type="nvarchar" MaxLength="100" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Types">
+          <Key>
+            <PropertyRef Name="Ma_Type" />
+          </Key>
+          <Property Name="Ma_Type" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ten_Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ten_Alias" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_DetailOrders_Orders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="DetailOrders" Type="Self.DetailOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="Ma_Order" />
+            </Principal>
+            <Dependent Role="DetailOrders">
+              <PropertyRef Name="Ma_Order" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetailOrders_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="DetailOrders" Type="Self.DetailOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Ma_Product" />
+            </Principal>
+            <Dependent Role="DetailOrders">
+              <PropertyRef Name="Ma_Product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Members">
+          <End Role="Members" Type="Self.Members" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="Ma_Mem" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="Ma_Mem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Brands">
+          <End Role="Brands" Type="Self.Brands" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brands">
+              <PropertyRef Name="Ma_Brand" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="Ma_Brand" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Types">
+          <End Role="Types" Type="Self.Types" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Types">
+              <PropertyRef Name="Ma_Type" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="Ma_Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transactions_Orders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="Ma_Order" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="Ma_Order" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WebStoreModelStoreContainer">
+          <EntitySet Name="Admins" EntityType="Self.Admins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Brands" EntityType="Self.Brands" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DetailOrders" EntityType="Self.DetailOrders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Members" EntityType="Self.Members" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transactions" EntityType="Self.Transactions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Types" EntityType="Self.Types" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DetailOrders_Orders" Association="Self.FK_DetailOrders_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="DetailOrders" EntitySet="DetailOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetailOrders_Products" Association="Self.FK_DetailOrders_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="DetailOrders" EntitySet="DetailOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Members" Association="Self.FK_Orders_Members">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Brands" Association="Self.FK_Products_Brands">
+            <End Role="Brands" EntitySet="Brands" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Types" Association="Self.FK_Products_Types">
+            <End Role="Types" EntitySet="Types" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_Orders" Association="Self.FK_Transactions_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WebStoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Ma_Ad" />
+          </Key>
+          <Property Name="Ma_Ad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DetailOrder">
+          <Key>
+            <PropertyRef Name="Ma_DeOr" />
+          </Key>
+          <Property Name="Ma_DeOr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ma_Order" Type="Int32" Nullable="false" />
+          <Property Name="Ma_Product" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="WebStoreModel.FK_DetailOrders_Products" FromRole="DetailOrder" ToRole="Product" />
+          <NavigationProperty Name="Order" Relationship="WebStoreModel.FK_DetailOrders_Orders" FromRole="DetailOrder" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="Ma_Mem" />
+          </Key>
+          <Property Name="Ma_Mem" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ten_Mem" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="WebStoreModel.FK_Orders_Members" FromRole="Member" ToRole="Order" />
+        </EntityType>
+        <EntityContainer Name="WebStoreEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="DetailOrders" EntityType="Self.DetailOrder" />
+          <EntitySet Name="Members" EntityType="Self.Member" />
+          <EntitySet Name="Products" EntityType="WebStoreModel.Product" />
+          <AssociationSet Name="FK_DetailOrders_Products" Association="WebStoreModel.FK_DetailOrders_Products">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="DetailOrder" EntitySet="DetailOrders" />
+          </AssociationSet>
+          <EntitySet Name="Brands" EntityType="WebStoreModel.Brand" />
+          <EntitySet Name="Types" EntityType="WebStoreModel.Type" />
+          <AssociationSet Name="FK_Products_Brands" Association="WebStoreModel.FK_Products_Brands">
+            <End Role="Brand" EntitySet="Brands" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Types" Association="WebStoreModel.FK_Products_Types">
+            <End Role="Type" EntitySet="Types" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <EntitySet Name="Orders" EntityType="WebStoreModel.Order" />
+          <EntitySet Name="Transactions" EntityType="WebStoreModel.Transaction" />
+          <AssociationSet Name="FK_DetailOrders_Orders" Association="WebStoreModel.FK_DetailOrders_Orders">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="DetailOrder" EntitySet="DetailOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Members" Association="WebStoreModel.FK_Orders_Members">
+            <End Role="Member" EntitySet="Members" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_Orders" Association="WebStoreModel.FK_Transactions_Orders">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+          <EntitySet Name="Feedbacks" EntityType="WebStoreModel.Feedback" />
+        </EntityContainer>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Ma_Product" />
+          </Key>
+          <Property Name="Ma_Product" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ma_Brand" Type="Int32" Nullable="false" />
+          <Property Name="Ma_Type" Type="Int32" Nullable="false" />
+          <Property Name="Ten_Product" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Ten_Alias" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Gia_Product" Type="Int32" Nullable="false" />
+          <Property Name="Info_Product" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Available" Type="Int32" Nullable="false" />
+          <Property Name="Image_Product" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Detail_Product" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Describe_Product" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DetailOrders" Relationship="WebStoreModel.FK_DetailOrders_Products" FromRole="Product" ToRole="DetailOrder" />
+          <NavigationProperty Name="Brand" Relationship="WebStoreModel.FK_Products_Brands" FromRole="Product" ToRole="Brand" />
+          <NavigationProperty Name="Type" Relationship="WebStoreModel.FK_Products_Types" FromRole="Product" ToRole="Type" />
+        </EntityType>
+        <Association Name="FK_DetailOrders_Products">
+          <End Type="WebStoreModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="WebStoreModel.DetailOrder" Role="DetailOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Ma_Product" />
+            </Principal>
+            <Dependent Role="DetailOrder">
+              <PropertyRef Name="Ma_Product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Brand">
+          <Key>
+            <PropertyRef Name="Ma_Brand" />
+          </Key>
+          <Property Name="Ma_Brand" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ten_Brand" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Ten_Alias" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="WebStoreModel.FK_Products_Brands" FromRole="Brand" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Type">
+          <Key>
+            <PropertyRef Name="Ma_Type" />
+          </Key>
+          <Property Name="Ma_Type" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ten_Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ten_Alias" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="WebStoreModel.FK_Products_Types" FromRole="Type" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK_Products_Brands">
+          <End Type="WebStoreModel.Brand" Role="Brand" Multiplicity="1" />
+          <End Type="WebStoreModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brand">
+              <PropertyRef Name="Ma_Brand" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="Ma_Brand" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Types">
+          <End Type="WebStoreModel.Type" Role="Type" Multiplicity="1" />
+          <End Type="WebStoreModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type">
+              <PropertyRef Name="Ma_Type" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="Ma_Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Ma_Order" />
+          </Key>
+          <Property Name="Ma_Order" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ma_Mem" Type="Int32" />
+          <Property Name="Total" Type="Double" />
+          <Property Name="Shipping" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Note" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Ten_NguoiNhan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChi_NguoiNhan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SDT__NguoiNhan" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Mail_NguoiNhan" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TP_NguoiNhan" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DetailOrders" Relationship="WebStoreModel.FK_DetailOrders_Orders" FromRole="Order" ToRole="DetailOrder" />
+          <NavigationProperty Name="Member" Relationship="WebStoreModel.FK_Orders_Members" FromRole="Order" ToRole="Member" />
+          <NavigationProperty Name="Transactions" Relationship="WebStoreModel.FK_Transactions_Orders" FromRole="Order" ToRole="Transaction" />
+        </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="Ma_Tran" />
+          </Key>
+          <Property Name="Ma_Tran" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ma_Order" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="Total" Type="Double" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Payment" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Payment_Info" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Order" Relationship="WebStoreModel.FK_Transactions_Orders" FromRole="Transaction" ToRole="Order" />
+        </EntityType>
+        <Association Name="FK_DetailOrders_Orders">
+          <End Type="WebStoreModel.Order" Role="Order" Multiplicity="1" />
+          <End Type="WebStoreModel.DetailOrder" Role="DetailOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Ma_Order" />
+            </Principal>
+            <Dependent Role="DetailOrder">
+              <PropertyRef Name="Ma_Order" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Members">
+          <End Type="WebStoreModel.Member" Role="Member" Multiplicity="0..1" />
+          <End Type="WebStoreModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="Ma_Mem" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Ma_Mem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transactions_Orders">
+          <End Type="WebStoreModel.Order" Role="Order" Multiplicity="1" />
+          <End Type="WebStoreModel.Transaction" Role="Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Ma_Order" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="Ma_Order" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="Ma_FB" />
+          </Key>
+          <Property Name="Ma_FB" Type="Int32" Nullable="false" />
+          <Property Name="Ten" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Mail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Content" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WebStoreModelStoreContainer" CdmEntityContainer="WebStoreEntities">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="WebStoreModel.Admin">
+              <MappingFragment StoreEntitySet="Admins">
+                <ScalarProperty Name="Ma_Ad" ColumnName="Ma_Ad" />
+                <ScalarProperty Name="Name_Ad" ColumnName="Name_Ad" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetailOrders">
+            <EntityTypeMapping TypeName="WebStoreModel.DetailOrder">
+              <MappingFragment StoreEntitySet="DetailOrders">
+                <ScalarProperty Name="Ma_DeOr" ColumnName="Ma_DeOr" />
+                <ScalarProperty Name="Ma_Order" ColumnName="Ma_Order" />
+                <ScalarProperty Name="Ma_Product" ColumnName="Ma_Product" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Members">
+            <EntityTypeMapping TypeName="WebStoreModel.Member">
+              <MappingFragment StoreEntitySet="Members">
+                <ScalarProperty Name="Ma_Mem" ColumnName="Ma_Mem" />
+                <ScalarProperty Name="Ten_Mem" ColumnName="Ten_Mem" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="WebStoreModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="Describe_Product" ColumnName="Describe_Product" />
+                <ScalarProperty Name="Detail_Product" ColumnName="Detail_Product" />
+                <ScalarProperty Name="Image_Product" ColumnName="Image_Product" />
+                <ScalarProperty Name="Available" ColumnName="Available" />
+                <ScalarProperty Name="Info_Product" ColumnName="Info_Product" />
+                <ScalarProperty Name="Gia_Product" ColumnName="Gia_Product" />
+                <ScalarProperty Name="Ten_Alias" ColumnName="Ten_Alias" />
+                <ScalarProperty Name="Ten_Product" ColumnName="Ten_Product" />
+                <ScalarProperty Name="Ma_Type" ColumnName="Ma_Type" />
+                <ScalarProperty Name="Ma_Brand" ColumnName="Ma_Brand" />
+                <ScalarProperty Name="Ma_Product" ColumnName="Ma_Product" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Brands">
+            <EntityTypeMapping TypeName="WebStoreModel.Brand">
+              <MappingFragment StoreEntitySet="Brands">
+                <ScalarProperty Name="Ten_Alias" ColumnName="Ten_Alias" />
+                <ScalarProperty Name="Ten_Brand" ColumnName="Ten_Brand" />
+                <ScalarProperty Name="Ma_Brand" ColumnName="Ma_Brand" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Types">
+            <EntityTypeMapping TypeName="WebStoreModel.Type">
+              <MappingFragment StoreEntitySet="Types">
+                <ScalarProperty Name="Ten_Alias" ColumnName="Ten_Alias" />
+                <ScalarProperty Name="Ten_Type" ColumnName="Ten_Type" />
+                <ScalarProperty Name="Ma_Type" ColumnName="Ma_Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="WebStoreModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="TP_NguoiNhan" ColumnName="TP_NguoiNhan" />
+                <ScalarProperty Name="Mail_NguoiNhan" ColumnName="Mail_NguoiNhan" />
+                <ScalarProperty Name="SDT__NguoiNhan" ColumnName="SDT__NguoiNhan" />
+                <ScalarProperty Name="DiaChi_NguoiNhan" ColumnName="DiaChi_NguoiNhan" />
+                <ScalarProperty Name="Ten_NguoiNhan" ColumnName="Ten_NguoiNhan" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Shipping" ColumnName="Shipping" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Ma_Mem" ColumnName="Ma_Mem" />
+                <ScalarProperty Name="Ma_Order" ColumnName="Ma_Order" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transactions">
+            <EntityTypeMapping TypeName="WebStoreModel.Transaction">
+              <MappingFragment StoreEntitySet="Transactions">
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Payment_Info" ColumnName="Payment_Info" />
+                <ScalarProperty Name="Payment" ColumnName="Payment" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Ma_Order" ColumnName="Ma_Order" />
+                <ScalarProperty Name="Ma_Tran" ColumnName="Ma_Tran" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Feedbacks">
+            <EntityTypeMapping TypeName="WebStoreModel.Feedback">
+              <MappingFragment StoreEntitySet="Feedback">
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="Ma_FB" ColumnName="Ma_FB" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

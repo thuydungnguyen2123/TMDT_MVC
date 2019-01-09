@@ -1,0 +1,164 @@
+﻿@model WebStore.Models.Product
+@*@model IEnumerable<WebStore.Models.Product>*@
+
+@{
+    ViewBag.Title = "ProductDetail";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+    var relatedProducts = (List<WebStore.Models.Product>)ViewBag.relate;
+}
+
+<head>
+    <title>Chi tiết sản phẩm</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/sublime/styles/main_styles.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/sublime/styles/responsive.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/sublime/styles/product.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/sublime/styles/product_responsive.css">
+</head>
+
+<!-- Product Details -->
+
+<div class="product_details" style="padding-top:45px">
+    <div class="container">
+        <div class="row details_row">
+
+            <!-- Product Image -->
+            <div class="col-lg-6">
+                <div class="details_image">
+                    <div class="details_image_large"><img src="@Url.Content("~/Content/Pic/" + Model.Image_Product+"1"+".jpg")" alt=""><div class="product_extra product_new"><a href="@Url.Action("SortBy_SEOUrl","Product", new { tenHHSEO = Model.Brand.Ten_Alias })">@Html.DisplayFor(model => model.Brand.Ten_Brand)</a></div></div>
+                    <div class="details_image_thumbnails d-flex flex-row align-items-start justify-content-between">
+                        <div class="details_image_thumbnail active" data-image="@Url.Content("~/Content/Pic/" + Model.Image_Product+"1"+".jpg")"><img src="@Url.Content("~/Content/Pic/" + Model.Image_Product+"1"+".jpg")" alt=""></div>
+                        @for (int i = 2; i <= 4; i++)
+                        {
+                            <div class="details_image_thumbnail" data-image="@Url.Content("~/Content/Pic/" + Model.Image_Product+i+".jpg")"><img src="@Url.Content("~/Content/Pic/" + Model.Image_Product+i+".jpg")" alt=""></div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Content -->
+            <div class="col-lg-6">
+                <div class="details_content">
+                    @*<div class="details_name">@Html.DisplayFor(model => model.Ten_Product)</div>
+                      <div class="details_discount">$890</div>
+                      <div class="details_price">$@Html.DisplayFor(model => model.Gia_Product)</div>*@
+                    <div class="details_name">@Html.DisplayFor(model => model.Ten_Product)</div>
+                    <div class="details_discount">$890</div>
+                    <div class="details_price">$@Html.DisplayFor(model => model.Gia_Product)</div>
+                    <!-- In Stock -->
+                    <div class="in_stock_container">
+                        <div class="availability">Tình trạng:</div>                  
+                        <span>@ViewBag.avai</span>
+                    </div>
+                    <div class="details_text">
+                        <p>@Html.Raw(Model.Info_Product)</p>
+                    </div>
+
+                    <!-- Product Quantity -->
+                    <div class="product_quantity_container">
+                        @*<div class="product_quantity clearfix">
+                            <span>Qty</span>
+                            <input id="quantity_input" type="text" pattern="[0-9]*" value="0">
+                            <div class="quantity_buttons">
+                                <div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
+                                <div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
+                            </div>
+                        </div>*@
+                        <div class="button cart_button" data-id="ViewBag.idpro"><a href="/them-gio-hang?id=@Model.Ma_Product&qty=1">Thêm vào giỏ hàng</a></div>
+                    </div>
+
+                    <!-- Share -->
+                    <div class="details_share">
+                        <span>Chia sẻ:</span>
+                        <ul>
+                            <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Description -->
+        <div class="row description_row">
+            <div class="col">
+                <div class="description_title_container">
+                    @*<div class="description_title">Mô tả sản phẩm</div>
+            <div class="reviews_title"><a href="#">Đánh giá <span>(1)</span></a></div>*@
+                    <div role="tabpanel">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active; reviews_title" style="margin-left:0px">
+                                <a href="#Mota" aria-controls="Mota" role="tab" data-toggle="tab">Mô tả sản phẩm</a>
+                            </li>
+                            <li class="reviews_title" role="presentation">
+                                <a href="#cmt" aria-controls="cmt" role="tab" data-toggle="tab">Đánh giá <span>(1)</span></a>
+                            </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="Mota">
+                            <div class="description_text">
+                                <p>@Html.Raw(Model.Detail_Product)</p>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="cmt">
+                            <div class="description_text">
+                                <p>COMMENT 1</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>           
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Products Related-->
+<div class="products">
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <div class="products_title">Sản phẩm liên quan</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="product_grid">
+                    <!-- Product -->
+                    <div class="product">
+                        @foreach (var item in relatedProducts)
+                        {
+                            if (@item.Ma_Product != ViewBag.idpro)
+                            {
+                                <div class="product_image" style="width: 260px; height: 260px;"><img src="@Url.Content("~/Content/Pic/" + @item.Image_Product+"1"+".jpg")" alt=""></div>
+                                <div class="product_extra product_new"><a href="@Url.Action("SortBy_SEOUrl","Product", new { tenHHSEO = @item.Brand.Ten_Alias })">@item.Brand.Ten_Brand</a></div>
+                                <div class="product_content">
+                                    <div class="product_title"><a href="@Url.Action("SEOUrl","Product", new { TenHHSEO = @item.Ten_Alias })">@item.Ten_Product</a></div>
+                                    <div class="product_price">$@item.Gia_Product</div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Content/sublime/js/jquery-3.2.1.min.js"></script>
+<script src="~/Content/sublime/styles/bootstrap4/popper.js"></script>
+<script src="~/Content/sublime/styles/bootstrap4/bootstrap.min.js"></script>
+<script src="~/Content/sublime/plugins/greensock/TweenMax.min.js"></script>
+<script src="~/Content/sublime/plugins/greensock/TimelineMax.min.js"></script>
+<script src="~/Content/sublime/plugins/scrollmagic/ScrollMagic.min.js"></script>
+<script src="~/Content/sublime/plugins/greensock/animation.gsap.min.js"></script>
+<script src="~/Content/sublime/plugins/greensock/ScrollToPlugin.min.js"></script>
+<script src="~/Content/sublime/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+<script src="~/Content/sublime/plugins/Isotope/isotope.pkgd.min.js"></script>
+<script src="~/Content/sublime/plugins/easing/easing.js"></script>
+<script src="~/Content/sublime/plugins/parallax-js-master/parallax.min.js"></script>
+<script src="~/Content/sublime/js/custom.js"></script>
+<script src="~/Content/sublime/js/product.js"></script>
+
+

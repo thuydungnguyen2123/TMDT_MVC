@@ -1,0 +1,96 @@
+﻿@model WebStore.Models.Product
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Bạn có chắc là muốn xoá sản phẩm này không?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên sản phẩm:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ten_Product)
+        </dd>
+
+        <dt>
+            Thương hiệu sản phẩm:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Brand.Ten_Brand)
+        </dd>
+
+        <dt>
+            Loại sản phẩm:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type.Ten_Type);
+        </dd>
+
+        <dt>
+            Giá sản phẩm:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gia_Product)
+        </dd>
+
+        <dt>
+            Thông tin cơ bản:
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.Info_Product)
+        </dd>
+
+        <dt>
+            Số lượng có sẵn:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Available)
+        </dd>
+
+        <dt>
+            Hình ảnh sản phẩm:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Image_Product)
+        </dd>
+
+        <dt>
+            Chi tiết sản phẩm:
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.Detail_Product)
+        </dd>
+
+        <dt>
+            Mô tả sản phẩm:
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.Describe_Product)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xoá" class="btn btn-default" /> |
+            @Html.ActionLink("Quay về danh sách", "Index")
+        </div>
+    }
+</div>

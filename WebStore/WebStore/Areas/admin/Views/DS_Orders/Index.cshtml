@@ -1,0 +1,59 @@
+﻿@model IEnumerable<WebStore.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Danh sách các đơn đặt hàng</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            Mã đơn
+        </th>
+        <th>
+            Tên khách hàng
+        </th>
+        <th>
+            Tổng tiền
+        </th>
+        <th>
+            Ngày tạo
+        </th>
+        <th>
+            Ghi chú
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ma_Order)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Member.Ten_Mem)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Total) USD
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Created)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Note)
+        </td>
+
+        <td>
+            @Html.ActionLink("Xem chi tiết đơn hàng", "Details", new { id=item.Ma_Order }) |
+            @Html.ActionLink("Xoá", "Delete", new { id=item.Ma_Order })
+        </td>
+    </tr>
+}
+
+</table>

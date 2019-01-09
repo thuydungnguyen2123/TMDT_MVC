@@ -1,0 +1,41 @@
+﻿@model WebStore.Models.Brand
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Bạn có chắc là muốn xoá thương hiệu này không?</h3>
+<div>
+    <h4>Brand</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Mã thương hiệu:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ma_Brand)
+        </dd>
+
+        <dt>
+            Tên thương hiệu:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ten_Brand)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xoá" class="btn btn-default" /> |
+            @Html.ActionLink("Quay về danh sách", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,43 @@
+﻿@model WebStore.Models.Admin
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Xem chi tiết</h2>
+
+<div>
+    <h4>Người quản trị</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Mã:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ma_Ad)
+        </dd>
+
+        <dt>
+            Tên người quản trị:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name_Ad)
+        </dd>
+
+        <dt>
+            Địa chỉ mail:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mail)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.Ma_Ad }) |
+    @Html.ActionLink("Quay lại danh sách", "Index")
+</p>

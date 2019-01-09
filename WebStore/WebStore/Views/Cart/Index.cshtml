@@ -1,0 +1,207 @@
+﻿@model List<WebStore.Models.CartItem>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+<head>
+    <title>Giỏ hàng</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/sublime/styles/main_styles.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/sublime/styles/responsive.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/sublime/styles/cart.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/sublime/styles/cart_responsive.css">
+</head>
+
+	<!-- Cart Info -->
+<div class="cart_info">
+    <div class="container">
+        @if (Model.Count > 0)
+        {
+            <div class="row" style="padding-top:40px">
+                <div class="col">
+                    <!-- Column Titles -->
+                    <div class="cart_info_columns clearfix">
+                        <div class="cart_info_col cart_info_col_product" style="font-size:16px; width:53%; text-align:center">Sản phẩm</div>
+                        <div class="cart_info_col cart_info_col_price" style="font-size:16px; width:14%; text-align:center">Giá sản phẩm</div>
+                        <div class="cart_info_col cart_info_col_quantity" style="font-size:16px; width:14%">Số lượng</div>
+                        <div class="cart_info_col cart_info_col_total" style="font-size:16px; width:15%; text-align:center">Thành tiền</div>
+                        <div class="cart_info_col cart_info_col_total"></div>
+                    </div>
+                </div>
+            </div>
+            foreach (var item in Model)
+            {
+                <div class="row cart_items_row">
+                    <div class="col">
+                        <!-- Cart Item -->
+                        <div class="cart_item d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
+                            <!-- Name -->
+                            <div class="cart_item_product d-flex flex-row align-items-center justify-content-start">
+                                <div class="cart_item_image">
+                                    <div><img src="@Url.Content("~/Content/Pic/" + @item.product.Image_Product + 1 + ".jpg")" alt=""></div>
+                                </div>
+                                <div class="cart_item_name_container">
+                                    <div class="cart_item_name"><a href="#">@item.product.Ten_Product</a></div>
+                                    <div class="cart_item_edit"><a href="#">@item.product.Type.Ten_Type @item.product.Brand.Ten_Brand</a></div>
+                                </div>
+                            </div>
+                            <!-- Price -->
+                            <div class="cart_item_price">$@item.product.Gia_Product.ToString("N0")</div>
+                            <!-- Quantity -->
+                            <div class="cart_item_quantity">
+                                <div class="product_quantity_container">
+                                    <div class="product_quantity clearfix">
+                                        <span>Qty</span>
+                                        <input class="txtQuantity" id="quantity_input" type="text" data-id="@item.product.Ma_Product" value="@item.Quantity">
+                                        @*<div class="quantity_buttons">
+                                            <div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
+                                            <div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
+                                        </div>*@
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Total -->
+                            <div class="cart_item_total">$@((item.product.Gia_Product * item.Quantity).ToString("N0"))</div>
+                            <div class="cart_item_total"><a href="#" data-id="@item.product.Ma_Product" class="btnDelete" style="font-size:16px">Xoá</a></div>
+                        </div>
+
+                    </div>
+                </div>
+            }
+        }
+        else {
+            <div class="row cart_items_row">
+                <div class="row" style="padding-top:50px">
+                    <div class="col text-center">
+                        <div class="section_title">Chưa có sản phẩm trong giỏ hàng</div>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="row row_cart_buttons">
+            <div class="col">
+                <div class="cart_buttons d-flex flex-lg-row flex-column align-items-start justify-content-start">
+                    <div class="button continue_shopping_button" id="btnContinue"><a href="#">Tiếp tục mua hàng</a></div>
+                    <div class="cart_buttons_right ml-lg-auto">
+                        <div class="button clear_cart_button" id="btnClearAll"><a href="#">Clear giỏ hàng</a></div>
+                        <div class="button update_cart_button" id="btnUpdate"><a href="#">Cập nhật giỏ hàng</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row row_extra">
+            <div class="col-lg-4">
+                <!-- Delivery -->
+                <div class="delivery">
+                    <div class="section_title">Dịch vụ giao hàng</div>
+                    <div class="section_subtitle">Chọn hình thức bạn muốn</div>
+                    <div class="delivery_options">
+                        <label class="delivery_option clearfix">
+                            Giao trong ngày
+                            <input type="radio" name="radio" class="check" id="radio1" value="10">
+                            <span class="checkmark"></span>
+                            <span class="delivery_price">$10</span>
+                        </label>
+                        <label class="delivery_option clearfix">
+                            Giao thường (2-3 ngày)
+                            <input type="radio" name="radio" class="check" id="radio2" value="5">
+                            <span class="checkmark"></span>
+                            <span class="delivery_price">$5</span>
+                        </label>
+                        <label class="delivery_option clearfix">
+                            Khách đến shop lấy
+                            <input type="radio" name="radio" class="check" id="radio3" value="0">
+                            <span class="checkmark"></span>
+                            <span class="delivery_price">Miễn phí</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Coupon Code -->
+                <div class="coupon">
+                    <div class="section_title">Code khuyến mãi</div>
+                    <div class="section_subtitle">Nhập code khuyến mãi</div>
+                    <div class="coupon_form_container">
+                        <form action="#" id="coupon_form" class="coupon_form">
+                            <input type="text" class="coupon_input" required="required">
+                            <button class="button coupon_button"><span>Xác nhận</span></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+                <!-- Tổng đơn giỏ hàng -->
+            <div class="col-lg-6 offset-lg-2">
+                <div class="cart_total">
+                    <div class="section_title">Tổng đơn giỏ hàng</div>
+                    @*<div class="section_subtitle">Final info</div>*@
+                    <div class="cart_total_container">
+                        <ul>
+                         <li class="d-flex flex-row align-items-center justify-content-start">
+                                <div class="cart_total_title">Tổng đơn sản phẩm </div>
+                                <div class="cart_total_value ml-auto" id="giohang">
+                                    @{
+                                        decimal? total = 0;
+                                        foreach (var item in Model)
+                                        {
+                                            total = total + (item.product.Gia_Product * item.Quantity);
+                                        }
+                                    }                             
+                                    $@total
+                                </div>
+                            </li>
+                            <li class="d-flex flex-row align-items-center justify-content-start">
+                                <div class="cart_total_title">Phí Ship</div>                                
+                                <div class="cart_total_value ml-auto" id="ship"></div>
+                            </li>
+                            <li class="d-flex flex-row align-items-center justify-content-start">
+                                <div class="cart_total_title">Tổng đơn hàng</div>
+                                <div class="cart_total_value ml-auto" id="tongtien">$@total</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="button checkout_button" id="btnOrder"><a href="#">ĐẶT HÀNG</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Content/sublime/js/jquery-3.2.1.min.js"></script>
+<script src="~/Content/sublime/styles/bootstrap4/popper.js"></script>
+<script src="~/Content/sublime/styles/bootstrap4/bootstrap.min.js"></script>
+<script src="~/Content/sublime/plugins/greensock/TweenMax.min.js"></script>
+<script src="~/Content/sublime/plugins/greensock/TimelineMax.min.js"></script>
+<script src="~/Content/sublime/plugins/scrollmagic/ScrollMagic.min.js"></script>
+<script src="~/Content/sublime/plugins/greensock/animation.gsap.min.js"></script>
+<script src="~/Content/sublime/plugins/greensock/ScrollToPlugin.min.js"></script>
+<script src="~/Content/sublime/plugins/easing/easing.js"></script>
+<script src="~/Content/sublime/plugins/parallax-js-master/parallax.min.js"></script>
+<script src="~/Content/sublime/js/cart.js"></script>
+<script src="~/Content/cartController.js"></script>
+<script src="~/Content/sublime/js/custom.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $('#radio1').click(function () {
+            var checkedradio = $('[name="radio"]:radio:checked').val();
+            $('#ship').html('$' + checkedradio);
+            $('#tongtien').html('$'+(@total + parseInt(checkedradio)));
+        });
+    });
+    $(function () {
+        $('#radio2').click(function () {
+            var checkedradio = $('[name="radio"]:radio:checked').val();
+            $('#ship').html('$' + checkedradio);
+            $('#tongtien').html('$'+(@total + parseInt(checkedradio)));
+        });
+    });
+    $(function () {
+        $('#radio3').click(function () {
+            var checkedradio = $('[name="radio"]:radio:checked').val();
+            $('#ship').html('$' + checkedradio);
+            $('#tongtien').html('$'+(@total + parseInt(checkedradio)));
+        });
+    });
+</script>
+

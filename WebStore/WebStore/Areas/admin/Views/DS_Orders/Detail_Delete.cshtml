@@ -1,0 +1,58 @@
+﻿@model WebStore.Models.DetailOrder
+
+@{
+    ViewBag.Title = "Detail_Delete";
+    Layout = "~/Areas/admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Xoá sản phẩm</h2>
+
+<h3>Bạn có chắc muốn xoá sản phẩm này trong đơn hàng không?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên sản phẩm:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.Ten_Product)
+        </dd>
+
+        <dt>
+            Giá tiền:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.Gia_Product) USD
+        </dd>
+
+        <dt>
+            Số lượng:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+
+        <dt>
+            Thành tiền:
+        </dt>
+
+        <dd>
+            @{var price = Html.DisplayFor(model => model.Product.Gia_Product).ToString();}
+            @{var amount = Html.DisplayFor(model => model.Amount).ToString();}
+            @(int.Parse(price) * int.Parse(amount)) USD
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xoá" class="btn btn-default" /> |
+            @Html.ActionLink("Quay về danh sách chi tiết đơn hàng", "Details", new { id = ViewBag.idOrder })
+        </div>
+    }
+</div>

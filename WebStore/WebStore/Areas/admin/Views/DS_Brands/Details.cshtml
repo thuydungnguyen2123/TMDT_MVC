@@ -1,0 +1,36 @@
+﻿@model WebStore.Models.Brand
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Xem chi tiết</h2>
+
+<div>
+    <h4>Thương hiệu</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            Mã thương hiệu:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ma_Brand)
+        </dd>
+
+        <dt>
+            Tên thương hiệu:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ten_Brand)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.Ma_Brand }) |
+    @Html.ActionLink("Quay về danh sách", "Index")
+</p>

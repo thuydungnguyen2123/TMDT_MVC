@@ -1,0 +1,333 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ZM's Store</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Sublime project">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="~/Content/sublime/styles/bootstrap4/bootstrap.min.css">
+    <link href="~/Content/sublime/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="~/Content/sublime/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/sublime/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/sublime/plugins/OwlCarousel2-2.2.1/animate.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/sublime/styles/main_styles.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/sublime/styles/responsive.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/Site.css" />
+</head>
+<body>
+
+    <div class="super_container">
+
+        <!-- Header -->
+
+        <header class="header">
+            <div class="header_container">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="header_content d-flex flex-row align-items-center justify-content-start">
+                                <div class="logo"><a style="font-size:40px" href="@Url.Action("Index","MainHome")">ZM's STORE</a></div>
+                                <nav class="main_nav" style="margin-left: 70px">
+                                    <ul>
+                                        <li class="hassubs active">
+                                            <a>ZM's STORE MENU</a>
+                                            <ul>
+                                                <li><a href="@Url.Action("ProductListAll","Product")">Sản phẩm</a></li>
+                                                <li><a href="@Url.Action("Index","Cart")">Cart</a></li>
+                                                <li><a href="#">Check out</a></li>
+                                                <li><a href="@Url.Action("Contact","MainHome")">Liên hệ</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="hassubs">
+                                            <a href="#">ZM's Sản phẩm</a>
+                                            <ul>
+                                                <li><a href="@Url.Action("SortBy_SEOUrl","Product", new { tenHHSEO = "1-laptop" })">Laptop</a></li>
+                                                <li><a href="@Url.Action("SortBy_SEOUrl","Product", new { tenHHSEO = "2-chuot" })">Chuột</a></li>
+                                                <li><a href="@Url.Action("SortBy_SEOUrl","Product", new { tenHHSEO = "3-ban-phim" })">Bàn phím</a></li>
+                                                <li><a href="@Url.Action("SortBy_SEOUrl","Product", new { tenHHSEO = "4-tai-nghe" })">Tai nghe</a></li>
+                                                <li><a href="@Url.Action("SortBy_SEOUrl","Product", new { tenHHSEO = "5-khac" })">Khác</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="hassubs">
+                                            <a href="#">Thương hiệu</a>
+                                            <ul>
+                                                <li><a href="@Url.Action("SortBy_SEOUrl","Product", new { tenHHSEO = "1-apple" })">APPLE</a></li>
+                                                <li><a href="@Url.Action("SortBy_SEOUrl","Product", new { tenHHSEO = "2-dell" })">DELL</a></li>
+                                                <li><a href="@Url.Action("SortBy_SEOUrl","Product", new { tenHHSEO = "3-asus" })">ASUS</a></li>
+                                                <li><a href="@Url.Action("SortBy_SEOUrl","Product", new { tenHHSEO = "4-msi" })">MSI</a></li>
+                                                <li><a href="@Url.Action("SortBy_SEOUrl","Product", new { tenHHSEO = "5-microsoft" })">MICROSOFT</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="@Url.Action("Contact","MainHome")">Liên hệ</a></li>
+                                    </ul>
+                                </nav>
+                                <div class="header_extra ml-auto">
+                                    @{Html.RenderAction("HeaderCart", "MainHome");}
+                                    <div class="search" style="margin-left: 5px">
+                                        <div class="search_icon">
+                                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                 viewBox="0 0 475.084 475.084" style="enable-background:new 0 0 475.084 475.084;"
+                                                 xml:space="preserve">
+                                            <g>
+                                            <path d="M464.524,412.846l-97.929-97.925c23.6-34.068,35.406-72.047,35.406-113.917c0-27.218-5.284-53.249-15.852-78.087
+												        c-10.561-24.842-24.838-46.254-42.825-64.241c-17.987-17.987-39.396-32.264-64.233-42.826
+												        C254.246,5.285,228.217,0.003,200.999,0.003c-27.216,0-53.247,5.282-78.085,15.847C98.072,26.412,76.66,40.689,58.673,58.676
+												        c-17.989,17.987-32.264,39.403-42.827,64.241C5.282,147.758,0,173.786,0,201.004c0,27.216,5.282,53.238,15.846,78.083
+												        c10.562,24.838,24.838,46.247,42.827,64.234c17.987,17.993,39.403,32.264,64.241,42.832c24.841,10.563,50.869,15.844,78.085,15.844
+												        c41.879,0,79.852-11.807,113.922-35.405l97.929,97.641c6.852,7.231,15.406,10.849,25.693,10.849
+												        c9.897,0,18.467-3.617,25.694-10.849c7.23-7.23,10.848-15.796,10.848-25.693C475.088,428.458,471.567,419.889,464.524,412.846z
+												         M291.363,291.358c-25.029,25.033-55.148,37.549-90.364,37.549c-35.21,0-65.329-12.519-90.36-37.549
+												        c-25.031-25.029-37.546-55.144-37.546-90.36c0-35.21,12.518-65.334,37.546-90.36c25.026-25.032,55.15-37.546,90.36-37.546
+												        c35.212,0,65.331,12.519,90.364,37.546c25.033,25.026,37.548,55.15,37.548,90.36C328.911,236.214,316.392,266.329,291.363,291.358z
+												        ">
+                                                    </path>
+										        </g>
+									        </svg>
+                                        </div>
+                                    </div>
+                                    @*Them dang nhap*@
+                                    <div class="shopping_cart" style="margin-left: 50px">
+                                        <a href="#">
+                                            <div style="font-size:18px">Login</div>
+                                        </a>
+                                    </div>
+                                    <div class="hamburger"><i class="fa fa-bars" aria-hidden="true"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search Panel -->
+            <div class="search_panel trans_300">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="search_panel_content d-flex flex-row align-items-center justify-content-end">
+                                <form action="#">
+                                    <input type="text" class="search_input" placeholder="Search" required="required">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social -->
+            <div class="header_social">
+                <ul>
+                    <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                    <li><a href="https://www.facebook.com/ZMSTORE1021/"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+        </header>
+
+        <!-- Menu -->
+
+        <div class="menu menu_mm trans_300">
+            <div class="menu_container menu_mm">
+                <div class="page_menu_content">
+
+                    <div class="page_menu_search menu_mm">
+                        <form action="#">
+                            <input type="search" required="required" class="page_menu_search_input menu_mm" placeholder="Search for products...">
+                        </form>
+                    </div>
+                    <ul class="page_menu_nav menu_mm">
+                        <li class="page_menu_item has-children menu_mm">
+                            <a href="#">ZM's STORE MENU<i class="fa fa-angle-down"></i></a>
+                            <ul class="page_menu_selection menu_mm">
+                                <li class="page_menu_item menu_mm"><a href="#">Sản phẩm<i class="fa fa-angle-down"></i></a></li>
+                                <li class="page_menu_item menu_mm"><a href="#">Cart<i class="fa fa-angle-down"></i></a></li>
+                                <li class="page_menu_item menu_mm"><a href="#">Checkout<i class="fa fa-angle-down"></i></a></li>
+                                <li class="page_menu_item menu_mm"><a href="#">Liên hệ<i class="fa fa-angle-down"></i></a></li>
+                            </ul>
+                        </li>
+                        <li class="page_menu_item has-children menu_mm">
+                            <a href="categories.html">Thương hiệu Laptop<i class="fa fa-angle-down"></i></a>
+                            <ul class="page_menu_selection menu_mm">
+                                <li class="page_menu_item menu_mm"><a href="#">APPLE<i class="fa fa-angle-down"></i></a></li>
+                                <li class="page_menu_item menu_mm"><a href="#">DELL<i class="fa fa-angle-down"></i></a></li>
+                                <li class="page_menu_item menu_mm"><a href="#">ASUS<i class="fa fa-angle-down"></i></a></li>
+                                <li class="page_menu_item menu_mm"><a href="#">MSI<i class="fa fa-angle-down"></i></a></li>
+                                <li class="page_menu_item menu_mm"><a href="#">Microsoft<i class="fa fa-angle-down"></i></a></li>
+                            </ul>
+                        </li>
+                        <li class="page_menu_item has-children menu_mm">
+                            <a href="categories.html">Phụ kiện điện tử<i class="fa fa-angle-down"></i></a>
+                            <ul class="page_menu_selection menu_mm">
+                                <li class="page_menu_item menu_mm"><a href="#">Chuột<i class="fa fa-angle-down"></i></a></li>
+                                <li class="page_menu_item menu_mm"><a href="#">Bàn phím<i class="fa fa-angle-down"></i></a></li>
+                                <li class="page_menu_item menu_mm"><a href="#">Tay nghe<i class="fa fa-angle-down"></i></a></li>
+                                <li class="page_menu_item menu_mm"><a href="#">Khác<i class="fa fa-angle-down"></i></a></li>
+                            </ul>
+                        </li>
+                        <li class="page_menu_item menu_mm"><a href="@Url.Action("Contact","MainHome")">LIÊN HỆ<i class="fa fa-angle-down"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="menu_close"><i class="fa fa-times" aria-hidden="true"></i></div>
+
+            <div class="menu_social">
+                <ul>
+                    <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                    <li><a href="https://www.facebook.com/kyo.saiki.7"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main -->
+        <div class="main">
+            <div class="main_container">
+                <!-- PAGE CONTENT BEGINS -->
+                @RenderBody()
+                <!-- PAGE CONTENT ENDS -->
+            </div><!-- /Main_container -->
+        </div>
+
+        <!----popup icon like share-------->
+        <div id="fb-root">
+            <script>
+                (function (d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id)) return;
+                    js = d.createElement(s); js.id = id;
+                    js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.1';
+                    fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));</script>
+            <div class="popupSocial">
+                <div class="fb-like" data-href="https://www.facebook.com/ZMSTORE1021/?modal=admin_todo_tour" data-layout="box_count"
+                     data-action="like" data-size="small" data-show-faces="true"></div>
+                <br /><br />
+                <div class="fb-share-button" data-href="http://www.zmstore.somee.com/" data-layout="box_count" data-size="small">
+                    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.zmstore.somee.com%2F&amp;src=sdkpreparse"
+                       class="fb-xfbml-parse-ignore"></a>
+                </div>
+                <br /><br />
+                <div style="width:60px">
+                    <script src="https://apis.google.com/js/platform.js" async defer></script>
+                    <g:plusone></g:plusone>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!----------poup icon chat fb--------------->
+        <div class="fb-livechat">
+            <div class="ctrlq fb-overlay"></div>
+            <div class="fb-widget">
+                <div class="ctrlq fb-close"></div>
+                <div class="fb-page" data-href="https://www.facebook.com/ZMSTORE1021" data-tabs="messages" data-width="360" data-height="400" data-small-header="true" data-hide-cover="true" data-show-facepile="false"> </div>
+                <div class="fb-credit"> <a href="https://chanhtuoi.com" target="_blank"></a> </div><div id="fb-root"></div>
+            </div><a href="https://m.me/ZMSTORE1021" title="Gửi tin nhắn cho chúng tôi qua Facebook" class="ctrlq fb-button">
+                <div class="bubble">!</div><div class="bubble-msg">Chatting with ZM's Store.</div>
+            </a>
+        </div>
+        <script src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                function detectmob() {
+                    if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) { return true; } else { return false; }
+                }
+                var t = { delay: 125, overlay: $(".fb-overlay"), widget: $(".fb-widget"), button: $(".fb-button") };
+                setTimeout(function () { $("div.fb-livechat").fadeIn() }, 8 * t.delay);
+                if (!detectmob()) { $(".ctrlq").on("click", function (e) { e.preventDefault(), t.overlay.is(":visible") ? (t.overlay.fadeOut(t.delay), t.widget.stop().animate({ bottom: 0, opacity: 0 }, 2 * t.delay, function () { $(this).hide("slow"), t.button.show() })) : t.button.fadeOut("medium", function () { t.widget.stop().show().animate({ bottom: "30px", opacity: 1 }, 2 * t.delay), t.overlay.fadeIn(t.delay) }) }) }
+            });</script>
+
+        @*<!--Start of Tawk.to Script-->
+        <script type="text/javascript">
+            var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+            (function () {
+                var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+                s1.async = true;
+                s1.src = 'https://embed.tawk.to/5b7809d4afc2c34e96e7b0fa/default';
+                s1.charset = 'UTF-8';
+                s1.setAttribute('crossorigin', '*');
+                s0.parentNode.insertBefore(s1, s0);
+            })();
+        </script>
+        <!--End of Tawk.to Script-->*@
+
+
+        <!-- Newsletter -->
+
+        <div class="newsletter">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="newsletter_border"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <div class="newsletter_content text-center">
+                            <div class="newsletter_title">Đăng kí theo dõi bản tin của chúng tôi</div>
+                            <div class="newsletter_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec molestie eros</p></div>
+                            <div class="newsletter_form_container">
+                                <form action="#" id="newsletter_form" class="newsletter_form">
+                                    <input type="email" class="newsletter_input" required="required">
+                                    <div><button class="newsletter_button trans_200"><span>Đăng kí</span></button></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+
+        <div class="footer_overlay"></div>
+        <footer class="footer">
+            <div class="footer_background" style="background-image:url(../../Content/sublime/images/footer.jpg)"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="footer_content d-flex flex-lg-row flex-column align-items-center justify-content-lg-start justify-content-center">
+                            <div class="footer_logo"><a href="MainHome">ZM's STORE</a></div>
+                            <div class="copyright ml-auto mr-auto">
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                E-Commerce &copy;
+                                <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://www.facebook.com/kyo.saiki.7" target="_blank">Zaa</a>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </div>
+                            <div class="footer_social ml-lg-auto">
+                                <ul>
+                                    <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                    <li><a href="https://www.facebook.com/ZMSTORE1021/"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="~/Content/sublime/js/jquery-3.2.1.min.js"></script>
+    <script src="~/Content/sublime/styles/bootstrap4/popper.js"></script>
+    <script src="~/Content/sublime/styles/bootstrap4/bootstrap.min.js"></script>
+    <script src="~/Content/sublime/plugins/greensock/TweenMax.min.js"></script>
+    <script src="~/Content/sublime/plugins/greensock/TimelineMax.min.js"></script>
+    <script src="~/Content/sublime/plugins/scrollmagic/ScrollMagic.min.js"></script>
+    <script src="~/Content/sublime/plugins/greensock/animation.gsap.min.js"></script>
+    <script src="~/Content/sublime/plugins/greensock/ScrollToPlugin.min.js"></script>
+    <script src="~/Content/sublime/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+    <script src="~/Content/sublime/plugins/Isotope/isotope.pkgd.min.js"></script>
+    <script src="~/Content/sublime/plugins/easing/easing.js"></script>
+    <script src="~/Content/sublime/plugins/parallax-js-master/parallax.min.js"></script>
+    <script src="~/Content/sublime/js/custom.js"></script>
+
+</body>
+</html>

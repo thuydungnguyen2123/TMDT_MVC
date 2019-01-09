@@ -1,0 +1,256 @@
+﻿@model List<WebStore.Models.CartItem>
+
+@{
+    ViewBag.Title = "PlaceOrder";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+<head>
+    <title>Checkout</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/sublime/styles/main_styles.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/sublime/styles/responsive.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/sublime/styles/cart.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/sublime/styles/cart_responsive.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/sublime/styles/checkout.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/sublime/styles/checkout_responsive.css">
+</head>
+
+	<!-- Cart Info -->
+<div class="cart_info">
+    <div class="container">
+        <div class="row" style="padding-top:40px">
+            <div class="col">
+                <!-- Column Titles -->
+                <div class="cart_info_columns clearfix">
+                    <div class="cart_info_col cart_info_col_product" style="font-size:16px; text-align:center">Sản phẩm</div>
+                    <div class="cart_info_col cart_info_col_price" style="font-size:16px">Giá</div>
+                    <div class="cart_info_col cart_info_col_quantity" style="font-size:16px">Số lượng</div>
+                    <div class="cart_info_col cart_info_col_total" style="font-size:16px; text-align:center">Thành tiền</div>
+                    <div class="cart_info_col cart_info_col_total"></div>
+                </div>
+            </div>
+        </div>
+        @foreach (var item in Model)
+        {
+        <div class="row cart_items_row">
+            <div class="col">
+                <!-- Cart Item -->
+                <div class="cart_item d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
+                    <!-- Name -->
+                    <div class="cart_item_product d-flex flex-row align-items-center justify-content-start">
+                        <div class="cart_item_image">
+                            <div><img src="@Url.Content("~/Content/Pic/" + @item.product.Image_Product + 1 + ".jpg")" alt=""></div>
+                        </div>
+                        <div class="cart_item_name_container">
+                            <div class="cart_item_name"><a href="#">@item.product.Ten_Product</a></div>
+                            <div class="cart_item_edit"><a href="#">@item.product.Type.Ten_Type @item.product.Brand.Ten_Brand</a></div>
+                        </div>
+                    </div>
+                    <!-- Price -->
+                    <div class="cart_item_price">$@item.product.Gia_Product.ToString("N0")</div>
+                    <!-- Quantity -->
+                    <div class="cart_item_quantity">
+                        <div class="product_quantity_container">
+                            <div class="product_quantity clearfix">
+                                <span>Qty</span>
+                                <input class="txtQuantity" id="quantity_input" type="text" data-id="@item.product.Ma_Product" value="@item.Quantity">
+                                @*<div class="quantity_buttons">
+                                    <div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
+                                    <div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
+                                </div>*@
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Total -->
+                    <div class="cart_item_total">$@((item.product.Gia_Product * item.Quantity).ToString("N0"))</div>
+                </div>
+
+            </div>
+        </div>
+        }
+    </div>
+</div>
+
+	<!-- Checkout -->
+<div class="checkout" style="padding-top:40px">
+    <div class="container">
+        <div class="row">
+
+            <!-- Billing Info -->
+            <div class="col-lg-6">
+                <div class="billing checkout_section">
+                    <div class="section_title">ZM'STORE DELIVERY</div>
+                    <div class="section_subtitle" style="font-style:italic">Nhập thông tin giao hàng ((*) không được bỏ trống)</div>
+                    <div class="checkout_form_container">
+                        <form action="#" id="checkout_form" class="checkout_form">
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <!-- Name -->
+                                    <label for="checkout_name">Họ và tên người nhận*</label>
+                                    <input type="text" id="checkout_name" class="checkout_input" required="required" style="width:555px">
+                                </div>
+                                @*<div class="col-xl-6 last_name_col">
+                                     Last Name 
+                                    <label for="checkout_last_name">Ngày tháng năm sinh*</label>
+                                    <input type="date" id="checkout_last_name" class="checkout_input" required="required">
+                                </div>*@
+                            </div>
+                            <!-- Company -->
+                            @*<div>                               
+                                <label for="checkout_company">Company*</label>
+                                <input type="text" id="checkout_company" class="checkout_input">
+                            </div>*@
+                            <div>
+                                <!-- Phone no -->
+                                <label for="checkout_phone">Số điện thoại người nhận*</label>
+                                <input type="number" id="checkout_phone" class="checkout_input" required="required">
+                            </div>
+                            <div>
+                                <!-- Email -->
+                                <label for="checkout_email">Mail người nhận*</label>
+                                <input type="email" id="checkout_email" class="checkout_input" required="required">
+                            </div>
+                            <div>
+                                <!-- Address -->
+                                <label for="checkout_address">Địa chỉ người nhận*</label>
+                                <input type="text" id="checkout_address" class="checkout_input" required="required">
+                                @*<input type="text" id="checkout_address_2" class="checkout_input checkout_address_2" required="required">*@
+                            </div>
+                            <div>
+                                <!-- City / Town -->
+                                <label for="checkout_city">Thành phố*</label>
+                                <select name="checkout_city" id="checkout_city" class="dropdown_item_select checkout_input" require="required">
+                                    <option></option>
+                                    <option>Hồ Chí Minh</option>
+                                    <option>Hà Nội</option>
+                                </select>
+                            </div>
+                            <div>
+                                <!-- Country -->
+                                <label for="checkout_country">Quốc gia*</label>
+                                <select name="checkout_country" id="checkout_country" class="dropdown_item_select checkout_input" require="required">
+                                    <option></option>
+                                    <option>Việt Nam</option>
+                                </select>
+                            </div>                           
+                            @*<div>
+                                 Zipcode 
+                                <label for="checkout_zipcode">Zipcode</label>
+                                <input type="text" id="checkout_zipcode" class="checkout_input" required="required">
+                            </div>*@                           
+                            <!-- Province -->
+                            @*<div>                               
+                                <label for="checkout_province">Province*</label>
+                                <select name="checkout_province" id="checkout_province" class="dropdown_item_select checkout_input" require="required">
+                                    <option></option>
+                                    <option>Province</option>
+                                    <option>Province</option>
+                                    <option>Province</option>
+                                    <option>Province</option>
+                                </select>
+                            </div>*@
+                            <div class="checkout_extra">
+                                <div>
+                                    <input type="checkbox" id="checkbox_terms" name="regular_checkbox" class="regular_checkbox" checked="checked">
+                                    <label for="checkbox_terms"><img src="~/Content/sublime/images/check.png" alt=""></label>
+                                    <span class="checkbox_title">Tôi đã điền đúng tất cả thông tin</span>
+                                </div>
+                                @*<div>
+                                    <input type="checkbox" id="checkbox_account" name="regular_checkbox" class="regular_checkbox">
+                                    <label for="checkbox_account"><img src="~/Content/sublime/images/check.png" alt=""></label>
+                                    <span class="checkbox_title">Create an account</span>
+                                </div>*@
+                                <div>
+                                    <input type="checkbox" id="checkbox_newsletter" name="regular_checkbox" class="regular_checkbox">
+                                    <label for="checkbox_newsletter"><img src="~/Content/sublime/images/check.png" alt=""></label>
+                                    <span class="checkbox_title">Nhận thông báo ưu đãi từ ZM's STORE</span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Info -->
+            <div class="col-lg-6">
+                <div class="order checkout_section">
+                    <div class="section_title">Đơn hàng của bạn</div>
+                    <div class="section_subtitle">Chi tiết đơn hàng</div>
+
+                    <!-- Order details -->
+                    <div class="order_list_container">
+                        <div class="order_list_bar d-flex flex-row align-items-center justify-content-start" style="margin-bottom:10px">
+                            <div class="order_list_title">Sản phẩm</div>
+                            <div class="order_list_value ml-auto">Tiền</div>
+                        </div>
+                        <ul class="order_list">
+                            @foreach (var item in Model)
+                            {
+                                <li class="d-flex flex-row align-items-center justify-content-start" style="margin-bottom:20px">
+                                    <div class="order_list_title">@item.product.Ten_Product</div>
+                                    <div class="order_list_value ml-auto">$@item.product.Gia_Product*@item.Quantity</div>
+                                </li>
+                            }
+                            <li class="d-flex flex-row align-items-center justify-content-start" style="margin-top:30px; margin-bottom:50px">
+                                <div class="order_list_title">Tổng tiền</div>
+                                <div class="order_list_value ml-auto">$@ViewBag.TongTien</div>
+                            </li>
+                            <li class="d-flex flex-row align-items-center justify-content-start" style="margin-bottom:50px">
+                                <div class="order_list_title">Phí Ship</div>
+                                <div class="order_list_value ml-auto">$@ViewBag.TienShip</div>
+                            </li>
+                            <li class="d-flex flex-row align-items-center justify-content-start"style="margin-bottom:50px">
+                                <div class="order_list_title">Tổng cộng</div>
+                                <div class="order_list_value ml-auto">$@ViewBag.Tong</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Payment Options -->
+                    <div class="payment">
+                        <div class="payment_options" style="margin-top:50px">
+                            <label class="delivery_option clearfix">
+                                Thanh toán qua Paypal
+                                <input type="radio" name="radio">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="delivery_option clearfix">
+                                Thanh toán bằng thẻ tín dụng
+                                <input type="radio" name="radio">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="delivery_option clearfix">
+                                Ship Code
+                                <input type="radio" name="radio">
+                                <span class="checkmark"></span>
+                            </label>
+                            @*<label class="payment_option clearfix">
+                                Direct bank transfer
+                                <input type="radio" checked="checked" name="radio">
+                                <span class="checkmark"></span>
+                            </label>*@
+                        </div>
+                    </div>
+
+                    <!-- Order Text -->
+                    <div class="order_text" style="margin-top:30px">(*) Quý khách cần cung cấp chính xác các thông tin trên.</div>
+                    <div class="button order_button" id="checkout"><a href="#">Thanh toán</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Content/sublime/js/jquery-3.2.1.min.js"></script>
+<script src="~/Content/sublime/styles/bootstrap4/popper.js"></script>
+<script src="~/Content/sublime/styles/bootstrap4/bootstrap.min.js"></script>
+<script src="~/Content/sublime/plugins/greensock/TweenMax.min.js"></script>
+<script src="~/Content/sublime/plugins/greensock/TimelineMax.min.js"></script>
+<script src="~/Content/sublime/plugins/scrollmagic/ScrollMagic.min.js"></script>
+<script src="~/Content/sublime/plugins/greensock/animation.gsap.min.js"></script>
+<script src="~/Content/sublime/plugins/greensock/ScrollToPlugin.min.js"></script>
+<script src="~/Content/sublime/plugins/easing/easing.js"></script>
+<script src="~/Content/sublime/plugins/parallax-js-master/parallax.min.js"></script>
+<script src="~/Content/sublime/js/custom.js"></script>
+<script src="~/Content/sublime/js/checkout.js"></script>
+

@@ -1,0 +1,59 @@
+﻿@model WebStore.Models.Member
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Xem chi tiết</h2>
+
+<div>
+    <h4>Thành viên</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Mã:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ma_Mem)
+        </dd>
+
+        <dt>
+            Tên thành viên:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ten_Mem)
+        </dd>
+
+        <dt>
+            Địa chỉ mail:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mail)
+        </dd>
+
+        <dt>
+            Địa chỉ:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            Số điện thoại:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.Ma_Mem }) |
+    @Html.ActionLink("Quay lại danh sách", "Index")
+</p>

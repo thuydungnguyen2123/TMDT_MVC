@@ -1,0 +1,64 @@
+﻿@model WebStore.Models.Order
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Xoá đơn đặt hàng</h2>
+<h3>Bạn có chắc muốn xoá đơn đặt hàng không?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Mã đơn hàng:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ma_Order)
+        </dd>
+
+        <dt>
+            Tên khách hàng:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Member.Ten_Mem)
+        </dd>
+
+        <dt>
+            Tổng tiền:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total) USD
+        </dd>
+
+        <dt>
+            Ngày tạo:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created)
+        </dd>
+
+        <dt>
+            Ghi chú:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Note)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xoá" class="btn btn-default" /> |
+            @Html.ActionLink("Quay về danh sách đơn hàng", "Index")
+        </div>
+    }
+</div>
+
